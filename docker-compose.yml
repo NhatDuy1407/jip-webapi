@@ -22,7 +22,7 @@ services:
     networks:
       - jip-network
   jip.webapi:
-    image: jip-webapi:latest
+    image: nhatduy1407/jip-webapi:latest
     container_name: jip-webapi
     depends_on:
       - jip.mysql
