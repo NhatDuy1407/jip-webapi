@@ -1,0 +1,33 @@
+version: '3.5'
+
+networks:
+  jip-network:
+    name: jip-network
+    driver: bridge
+
+services:
+  jip.mysql:
+    image: mysql:8.0
+    container_name: jip-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456a@A
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=123456a@A
+      - MYSQL_DATABASE=jipdb
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+    volumes:
+      - /database/mysql:/var/lib/mysql
+    # ports:
+      # - 3306:3306
+    networks:
+      - jip-network
+  jip.webapi:
+    image: jip-webapi:latest
+    container_name: jip-webapi
+    depends_on:
+      - jip.mysql
+    ports: 
+      - "5000:5000"
+    networks:
+      - jip-network
+  
