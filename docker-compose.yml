@@ -27,7 +27,7 @@ services:
     depends_on:
       - jip.mysql
     ports: 
-      - "5000:5000"
+      - "5000:80"
     networks:
       - jip-network
   
