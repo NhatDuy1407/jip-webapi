@@ -9,6 +9,7 @@ services:
   jip.mysql:
     image: mysql:8.0
     container_name: jip-mysql
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=123456a@A
       - MYSQL_USER=admin
@@ -24,6 +25,7 @@ services:
   jip.webapi:
     image: nhatduy1407/jip-webapi:latest
     container_name: jip-webapi
+    restart: always
     depends_on:
       - jip.mysql
     ports: 
