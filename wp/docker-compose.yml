@@ -1,0 +1,39 @@
+version: '3.5'
+
+networks:
+  jip-network:
+    name: jip-network
+    driver: bridge
+    
+services:
+  jip.wp-mysql:
+    image: mysql:8.0
+    container_name: jip-wp-mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+    volumes:
+      - /database/wp-mysql:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456a@A
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=123456a@A
+      - MYSQL_DATABASE=jipwpdb
+    networks:
+      - jip-network
+  jip.wp:
+    image: nhatduy1407/jip-wp:latest
+    container_name: jip-wp
+    restart: always
+    ports:
+      - 5001:80
+    volumes:
+      - /jip-wp:/var/www/html
+    depends_on:
+      - jip.wp-mysql
+    environment:
+      DB_NAME: jipwpdb
+      DB_USER: admin
+      DB_PASSWORD: 123456a@A
+      DB_HOST: jip.wp-mysql
+    networks:
+      - jip-network
