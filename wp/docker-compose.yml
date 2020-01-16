@@ -2,7 +2,7 @@ version: '3.5'
 
 networks:
   jip-network:
-    name: jip-network
+    name: jip-wp-network
     driver: bridge
     
 services:
@@ -19,7 +19,7 @@ services:
       - MYSQL_PASSWORD=123456a@A
       - MYSQL_DATABASE=jipwpdb
     networks:
-      - jip-network
+      - jip-wp-network
   jip.wp:
     image: nhatduy1407/jip-wp:latest
     container_name: jip-wp
@@ -27,13 +27,9 @@ services:
     ports:
       - 5001:80
     volumes:
-      - /jip-wp:/var/www/html
+      - /jip-wp:/var/www/content
     depends_on:
       - jip.wp-mysql
-    environment:
-      DB_NAME: jipwpdb
-      DB_USER: admin
-      DB_PASSWORD: 123456a@A
-      DB_HOST: jip.wp-mysql
+    env_file: .env
     networks:
-      - jip-network
+      - jip-wp-network
