@@ -27,7 +27,7 @@ services:
     ports:
       - 5001:80
     volumes:
-      - ./content:/var/www/content
+      - /jip-wp:/var/www/content
     depends_on:
       - jip.wp-mysql
     env_file: .env
