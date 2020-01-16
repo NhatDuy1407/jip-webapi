@@ -1,7 +1,7 @@
 version: '3.5'
 
 networks:
-  jip-network:
+  jip-wp-network:
     name: jip-wp-network
     driver: bridge
     
