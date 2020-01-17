@@ -4,7 +4,7 @@ networks:
   jip-wp-network:
     name: jip-wp-network
     driver: bridge
-    
+
 services:
   jip.wp-mysql:
     image: mysql:8.0
@@ -14,11 +14,6 @@ services:
       - /database/wp-mysql:/var/lib/mysql
     restart: always
     env_file: .env
-   #environment:
-      # - MYSQL_ROOT_PASSWORD=123456a@A
-      # - MYSQL_USER=admin
-      # - MYSQL_PASSWORD=123456a@A
-      # - MYSQL_DATABASE=jipwpdb
     networks:
       - jip-wp-network
   jip.wp:
@@ -28,7 +23,7 @@ services:
     ports:
       - 5001:80
     volumes:
-      - /jip-wp:/var/www/html
+      - /jip-wp:/var/www/html/wp
     depends_on:
       - jip.wp-mysql
     env_file: .env
