@@ -15,9 +15,9 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=123456a@A
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=123456a@A
-      - MYSQL_DATABASE=jipwpdb
+      # - MYSQL_USER=admin
+      # - MYSQL_PASSWORD=123456a@A
+      # - MYSQL_DATABASE=jipwpdb
     networks:
       - jip-wp-network
   jip.wp:
